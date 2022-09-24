@@ -3,7 +3,7 @@ variable region {
     description = "Region where should EKS will be placed"
 }
 
-variable eks_cluster_name {
+variable name {
     type= string
     description = "Name of EKS cluster"
 }
