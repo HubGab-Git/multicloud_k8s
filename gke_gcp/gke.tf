@@ -15,20 +15,20 @@ module "gke" {
 
   node_pools = [
     {
-      name                      = "default-node-pool"
-      machine_type              = var.instance_type
-      min_count                 = 1
-      max_count                 = 1
-      spot                      = true
-      disk_size_gb              = 10
-      disk_type                 = "pd-standard"
-      image_type                = "COS_CONTAINERD"
-      service_account           = var.service_account
-      spot                      = true
-      initial_node_count        = 1
+      name               = "default-node-pool"
+      machine_type       = var.instance_type
+      min_count          = 1
+      max_count          = 1
+      spot               = true
+      disk_size_gb       = 10
+      disk_type          = "pd-standard"
+      image_type         = "COS_CONTAINERD"
+      service_account    = var.service_account
+      spot               = true
+      initial_node_count = 1
     },
   ]
-   depends_on = [
+  depends_on = [
     google_project_service.compute,
     google_project_service.container,
     google_project_service.cloudresourcemanager

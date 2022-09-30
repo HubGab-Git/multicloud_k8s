@@ -1,4 +1,4 @@
- module eks_aws {
+module eks_aws {
     source  = "./eks_aws"
     region = var.aws.region
     name = var.aws.cluster.name
@@ -15,4 +15,10 @@ module "gke_gcp" {
   name    = var.gcp.cluster.name
   service_account = var.gcp.cluster.service_account
   subnet_cidr = var.gcp.cluster.subnet_cidr
+}
+
+module "aks_azure" {
+  source = "./aks_azure"
+  client_id = var.azure.appId
+  password = var.azure.password
 }
