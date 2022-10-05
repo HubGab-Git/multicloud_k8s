@@ -19,11 +19,11 @@ output "gcp_cluster_name" {
 }
 
 output "azure_resource_group_name" {
-    description = "Azure resource name"
-    value = module.aks_azure.rg_name
+  description = "Azure resource name"
+  value       = module.aks_azure.rg_name
 }
 
 output "azure_cluster_name" {
-    description = "Azure cluster name"
-    value = module.aks_azure.cluster_name
+  description = "Azure cluster name"
+  value       = module.aks_azure.cluster_name
 }

@@ -16,12 +16,12 @@ variable "instance_type" {
   description = "Machines type of default node pool"
 }
 
-variable client_id {
-  type = string
-  description = "AppID for Service Principal RBAC"  
+variable "client_id" {
+  type        = string
+  description = "AppID for Service Principal RBAC"
 }
 
-variable password {
-  type = string
+variable "password" {
+  type        = string
   description = "Password for Service Principal RBAC"
 }

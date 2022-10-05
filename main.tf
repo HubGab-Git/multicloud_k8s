@@ -24,19 +24,19 @@ terraform {
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "~> 2.0.1"
+      version = "~> 2.13.1"
     }
   }
 }
 
 provider "aws" {
-  region = aws.region
+  region = var.aws.region
 }
 
 provider "google" {
-  project = var.gcp.project_id
-  region  = var.gcp.region
-  zone    = var.gcp.zone
+  project     = var.gcp.project_id
+  region      = var.gcp.region
+  zone        = var.gcp.zone
   credentials = file(var.gcp.credentials)
 }
 
@@ -47,7 +47,7 @@ provider "azurerm" {
 }
 
 
-### Kubernetes configuration for each cloud providers 
+## Kubernetes configuration for each cloud providers 
 
 provider "kubernetes" {
   alias = "azure"
@@ -60,18 +60,18 @@ provider "kubernetes" {
 
 provider "kubernetes" {
   alias = "gcp"
-  host = module.gke_gcp.cluster_host
+  host  = "https://${module.gke_gcp.cluster_host}"
 
   token                  = data.google_client_config.default.access_token
   cluster_ca_certificate = base64decode(module.gke_gcp.ca_certificate)
 }
 
 provider "kubernetes" {
-  alias = "aws"
+  alias                  = "aws"
   host                   = module.eks_aws.cluster_endpoint
-  cluster_ca_certificate = module.eks_aws.cluster_ca
+  cluster_ca_certificate = base64decode(module.eks_aws.cluster_ca)
   exec {
-    api_version = "client.authentication.k8s.io/v1alpha1"
+    api_version = "client.authentication.k8s.io/v1"
     command     = "aws"
     args = [
       "eks",

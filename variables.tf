@@ -15,18 +15,19 @@ variable "gcp" {
 
 variable "aws" {
   type = object({
-    region   = string
-    azs      = list(string)
-    vpc_cidr = string
-    subnets  = list(string)
-    cluster  = string
+    region          = string
+    azs             = list(string)
+    vpc_cidr        = string
+    public_subnets  = list(string)
+    private_subnets = list(string)
+    cluster         = string
   })
   description = "AWS related variables"
 }
 
 variable "azure" {
   type = object({
-    appId = string
+    appId    = string
     password = string
   })
   description = "Azure related variables"

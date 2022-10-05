@@ -16,7 +16,7 @@ variable "eks_version" {
 
 variable "instance_type" {
   type        = string
-  default     = "t3.nano"
+  default     = "t3.small"
   description = "Instance type for EKS nodes"
 }
 
@@ -25,9 +25,14 @@ variable "vpc_cidr" {
   description = "CIDR of VPC"
 }
 
-variable "subnets" {
+variable "public_subnets" {
   type        = list(string)
-  description = "List of subnets cidrs in VPC"
+  description = "List of public subnets cidrs in VPC"
+}
+
+variable "private_subnets" {
+  type        = list(string)
+  description = "List of private subnets cidrs in VPC"
 }
 
 variable "azs" {
