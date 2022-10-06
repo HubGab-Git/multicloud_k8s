@@ -45,23 +45,23 @@ Before you start using this project, you will need:
 
 * For EKS:
 
-- an [AWS account](https://portal.aws.amazon.com/billing/signup?nc2=h_ct&src=default&redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start)
+	- an [AWS account](https://portal.aws.amazon.com/billing/signup?nc2=h_ct&src=default&redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start)
 
-- the AWS CLI, [installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+	- the AWS CLI, [installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 
 * For GKE:
 
-- a [GCP account](https://console.cloud.google.com/)
+	- a [GCP account](https://console.cloud.google.com/)
 
-- a configured [gcloud SDK](https://developer.hashicorp.com/terraform/tutorials/kubernetes/gke#prerequisites)
+	- a configured [gcloud SDK](https://developer.hashicorp.com/terraform/tutorials/kubernetes/gke#prerequisites)
 
-- create project in GCP account with
+	- create project in GCP account with
 
 * For AKS:
 
-- an [Azure account](https://portal.azure.com/#home)
+	- an [Azure account](https://portal.azure.com/#home)
 
-- a configured [Azure CLI](https://developer.hashicorp.com/terraform/tutorials/kubernetes/aks#prerequisites)
+	- a configured [Azure CLI](https://developer.hashicorp.com/terraform/tutorials/kubernetes/aks#prerequisites)
 
 * Kubernetes CLI [ `kubectl`](https://kubernetes.io/docs/reference/tools/)
 
@@ -106,7 +106,7 @@ This file you have to fill your data from GCP and Azure:
 	```
 	* Confirm Project ID.
 	
-	console output should be like below:
+		console output should be like below:
 
 	 	![Create GCP project](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/80a0bebea2c2b3e1616b7177879f67d9485aafda/images/createGCPproject.png)
 
