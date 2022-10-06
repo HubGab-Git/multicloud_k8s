@@ -106,9 +106,11 @@ This file you have to fill your data from GCP and Azure:
 	```
 	* confirm Project ID.
 	console output should be like below:
+
 	 ![Create GCP project](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/80a0bebea2c2b3e1616b7177879f67d9485aafda/images/createGCPproject.png)
 
   * Copy Project ID into terraform.tfvars file into line 7:
+
   ![Copy Project ID into terraform.tfvars file](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/projectIDinVars.png)
  
  * Create Service Account for Terraform to be able provision resources:
@@ -116,9 +118,11 @@ This file you have to fill your data from GCP and Azure:
 	gcloud iam service-accounts create <Name of your Service Account>
 	```
 	example:
+
 ![Create SA](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/createSA.png)
 
 * Type your service account email into terraform.tsvars file into line 22:
+
 ![SA in Vars](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/SAinVars.png)
 
 * Assign "owner" role to newly created service account:
@@ -126,8 +130,9 @@ This file you have to fill your data from GCP and Azure:
 	gcloud projects add-iam-policy-binding <ProjectID>  \  
 	--member="serviceAccount:<SAName>@<ProjectID>.iam.gserviceaccount.com"  \
 	role="roles/owner"
-	```md
+	```
 	example:
+
 	![Assign Role to SA](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/AssignRoleToSA.png)
 * Download json file with Service Account credentials:
 
@@ -136,16 +141,20 @@ This file you have to fill your data from GCP and Azure:
 	    --iam-account=<SAName>@<ProjectID>.iam.gserviceaccount.com  
 	```
 	example: 
+
 	![ Download credentials file ](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/downloadCredentials.png)
 * Type path to credentials file in terraform.tfvar file into line 15:
+
 ![Credentials File in Vars](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/credentialsInVars.png)
 * GCP data was full-filed now Azure, only one Azure command to get  Service Principal credentials:
 	```md
 	az ad sp create-for-rbac --skip-assignment
 	```
 	example:
+
 	![Azure command](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/ServicePrincipalCredentials.png)
 * Type appId and password in terraform.tsvars file into lines 49 and 50:
+
 	![AZ Credentials in Vars](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/SPCredendialsInVars.png)
 	
 5. Now we can start on terraform. Download all needed terraform providers and modules:
@@ -178,7 +187,7 @@ This file you have to fill your data from GCP and Azure:
 		```md
 		gcloud container clusters get-credentials $(terraform output -raw gcp_cluster_name) --region $(terraform output -raw gcp_region)
 		```
-		* Show e.q. pods:
+	* Show e.q. pods:
 		```md
 		kubectl get po
 		```
@@ -232,35 +241,35 @@ my fast workaround for this is assign IPv4 addresses for affected domains:
 1. Copy domain and find IPv4 for it, for example by "ping" command:
 ![Ping example](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/ping.png)
 2. Type domain name and IP into "hosts" file, bellow my example host file:
-```md
-##
-# Host Database
-#
-# localhost is used to configure the loopback interface
-# when the system is booting. Do not change this entry.
-##
-127.0.0.1  localhost
-255.255.255.255  broadcasthost
-::1  localhost
-142.250.203.202  oauth2.googleapis.com
-216.58.215.74  compute.googleapis.com
-142.250.186.202  container.googleapis.com
-172.217.16.10  cloudresourcemanager.googleapis.com
-142.250.203.138  iam.googleapis.com
-216.58.208.202  serviceusage.googleapis.com
-# Added by Docker Desktop
-# To allow the same kube context to work on the host and the container:
-127.0.0.1  kubernetes.docker.internal
-# End of section
-51.116.62.189  management.azure.com
-51.11.173.167  k8s-3d28e68f1819d816-0a1504f2.hcp.uksouth.azmk8s.io
-34.248.242.151  78cda35666e1ca76dd11076693eaab38.gr7.eu-west-1.eks.amazonaws.com
-52.49.87.145  7be4eb75a4a654b5d7b7246e8bd2bf4e.yl4.eu-west-1.eks.amazonaws.com
-52.208.7.143  oidc.eks.eu-west-1.amazonaws.com
-51.143.243.78  k8s-1efe6846b93f2095-423df77c.hcp.uksouth.azmk8s.io
-54.229.44.223  E642F2F9F0953B1086B35B0BBA53E2B4.sk1.eu-west-1.eks.amazonaws.com
-```
+	```md
+	##
+	# Host Database
+	#
+	# localhost is used to configure the loopback interface
+	# when the system is booting. Do not change this entry.
+	##
+	127.0.0.1  localhost
+	255.255.255.255  broadcasthost
+	::1  localhost
+	142.250.203.202  oauth2.googleapis.com
+	216.58.215.74  compute.googleapis.com
+	142.250.186.202  container.googleapis.com
+	172.217.16.10  cloudresourcemanager.googleapis.com
+	142.250.203.138  iam.googleapis.com
+	216.58.208.202  serviceusage.googleapis.com
+	# Added by Docker Desktop
+	# To allow the same kube context to work on the host and the container:
+	127.0.0.1  kubernetes.docker.internal
+	# End of section
+	51.116.62.189  management.azure.com
+	51.11.173.167  k8s-3d28e68f1819d816-0a1504f2.hcp.uksouth.azmk8s.io
+	34.248.242.151  78cda35666e1ca76dd11076693eaab38.gr7.eu-west-1.eks.amazonaws.com
+	52.49.87.145  7be4eb75a4a654b5d7b7246e8bd2bf4e.yl4.eu-west-1.eks.amazonaws.com
+	52.208.7.143  oidc.eks.eu-west-1.amazonaws.com
+	51.143.243.78  k8s-1efe6846b93f2095-423df77c.hcp.uksouth.azmk8s.io
+	54.229.44.223  E642F2F9F0953B1086B35B0BBA53E2B4.sk1.eu-west-1.eks.amazonaws.com
+	```
 
-What I understand is that issue is rather caused by "Go lang" rather than terraform which is developed by Go
-More information about this issue under this link: 
-https://github.com/hashicorp/terraform-provider-google/issues/6782
+	What I understand is that issue is rather caused by "Go lang" rather than terraform which is developed by Go
+	More information about this issue under this link: 
+	https://github.com/hashicorp/terraform-provider-google/issues/6782
