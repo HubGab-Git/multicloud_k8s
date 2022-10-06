@@ -104,14 +104,15 @@ This file you have to fill your data from GCP and Azure:
 	```md
 	sudo gcloud projects create --name <your project name>
 	```
-	* confirm Project ID.
+	* Confirm Project ID.
+	
 	console output should be like below:
 
-	 ![Create GCP project](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/80a0bebea2c2b3e1616b7177879f67d9485aafda/images/createGCPproject.png)
+	 	![Create GCP project](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/80a0bebea2c2b3e1616b7177879f67d9485aafda/images/createGCPproject.png)
 
   * Copy Project ID into terraform.tfvars file into line 7:
 
-  ![Copy Project ID into terraform.tfvars file](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/projectIDinVars.png)
+  	![Copy Project ID into terraform.tfvars file](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/projectIDinVars.png)
  
  * Create Service Account for Terraform to be able provision resources:
 	 ```md
@@ -119,11 +120,11 @@ This file you have to fill your data from GCP and Azure:
 	```
 	example:
 
-![Create SA](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/createSA.png)
+	![Create SA](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/createSA.png)
 
 * Type your service account email into terraform.tsvars file into line 22:
 
-![SA in Vars](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/SAinVars.png)
+	![SA in Vars](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/SAinVars.png)
 
 * Assign "owner" role to newly created service account:
 	```md
@@ -145,7 +146,7 @@ This file you have to fill your data from GCP and Azure:
 	![ Download credentials file ](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/downloadCredentials.png)
 * Type path to credentials file in terraform.tfvar file into line 15:
 
-![Credentials File in Vars](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/credentialsInVars.png)
+	![Credentials File in Vars](https://raw.githubusercontent.com/HubGab-Git/multicloud_k8s/main/images/credentialsInVars.png)
 * GCP data was full-filed now Azure, only one Azure command to get  Service Principal credentials:
 	```md
 	az ad sp create-for-rbac --skip-assignment
