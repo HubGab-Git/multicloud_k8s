@@ -99,7 +99,7 @@ code terraform.tfvars
 This file you have to fill your data from GCP and Azure:
 * Create project in GCP:
 	```md
-	code terraform.tfvars
+	sudo gcloud projects create --name multicloud-demo
 	```
 
   
