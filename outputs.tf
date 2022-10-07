@@ -10,7 +10,7 @@ output "aws_cluster_name" {
 
 output "gcp_region" {
   description = "GCP region"
-  value       = var.gcp.region
+  value       = var.gke.zone
 }
 
 output "gcp_cluster_name" {

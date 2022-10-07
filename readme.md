@@ -81,21 +81,21 @@ When you have all needed CLIs you can start using this project:
 
 1. Clone this repo to local machine:
 
-```md
-git clone https://github.com/HubGab-Git/multicloud_k8s.git
-```
+	```md
+	git clone https://github.com/HubGab-Git/multicloud_k8s.git
+	```
 
 2. Enter downloaded folder:
 
-```md
-cd multicloud_k8s
-```
+	```md
+	cd multicloud_k8s
+	```
 
 3. Open file terraform.tfvars ( for example in vs code):
 
-```md
-code terraform.tfvars
-```
+	```md
+	code terraform.tfvars
+	```
 
 This file you have to fill your data from GCP and Azure:
 
@@ -274,3 +274,44 @@ my fast workaround for this is assign IPv4 addresses for affected domains:
 	What I understand is that issue is rather caused by "Go lang" rather than terraform which is developed by Go
 	More information about this issue under this link: 
 	https://github.com/hashicorp/terraform-provider-google/issues/6782
+
+
+	### Google service errors:
+
+	There can appear errors like below:
+
+
+│ Error: Request `Enable Project Service "container.googleapis.com" for project "multicloud-demo-364707"` returned error: Batch request and retried single request "Enable Project Service \"container.googleapis.com\" for project \"multicloud-demo-364707\"" both failed. Final error: failed to send enable services request: googleapi: Error 400: Billing account for project '626917844434' is not found. Billing must be enabled for activation of service(s) 'container.googleapis.com,container.googleapis.com,compute.googleapis.com,compute.googleapis.com,compute.googleapis.com,containerregistry.googleapis.com' to proceed.
+│ Help Token: AWzfkCMjI4BqYvhEaXaY93g33EdnpRaRr7LkR_2iAMQ2s8br-ygL9eANYXVkjum-SY315Q-TZA5D_rABinYSCZTOBeuG1FBXShXNEtfwAHTTxX11
+│ Details:
+│ [
+│   {
+│     "@type": "type.googleapis.com/google.rpc.PreconditionFailure",
+│     "violations": [
+│       {
+│         "subject": "?error_code=390001\u0026project=626917844434\u0026services=container.googleapis.com\u0026services=container.googleapis.com\u0026services=compute.googleapis.com\u0026services=compute.googleapis.com\u0026services=compute.googleapis.com\u0026services=containerregistry.googleapis.com",
+│         "type": "googleapis.com/billing-enabled"
+│       }
+│     ]
+│   },
+│   {
+│     "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+│     "domain": "serviceusage.googleapis.com/billing-enabled",
+│     "metadata": {
+│       "project": "626917844434",
+│       "services": "container.googleapis.com,container.googleapis.com,compute.googleapis.com,compute.googleapis.com,compute.googleapis.com,containerregistry.googleapis.com"
+│     },
+│     "reason": "UREQ_PROJECT_BILLING_NOT_FOUND"
+│   }
+│ ]
+│ , failedPrecondition
+│ 
+│   with module.gke_gcp.google_project_service.container,
+│   on gke_gcp/services.tf line 11, in resource "google_project_service" "container":
+│   11: resource "google_project_service" "container" {
+│ 
+
+Workaroiund for them is to manualy enable Compute and Container services:
+
+https://console.cloud.google.com/marketplace/product/google/container.googleapis.com
+https://console.cloud.google.com/marketplace/product/google/compute.googleapis.com

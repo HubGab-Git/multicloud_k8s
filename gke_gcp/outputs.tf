@@ -11,3 +11,8 @@ output "cluster_name" {
   value       = module.gke.name
   description = "GKE cluster name"
 }
+
+output "cluster_region" {
+  value       = module.gke.location
+  description = "Cluster region"
+}
