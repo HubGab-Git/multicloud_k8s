@@ -310,6 +310,7 @@ my fast workaround for this is assign IPv4 addresses for affected domains:
 	│   11: resource "google_project_service" "container" {
 	│ 
 	```
+	
 	Workaroiund for them is to manualy enable Compute and Container services:
 
 	https://console.cloud.google.com/marketplace/product/google/container.googleapis.com
